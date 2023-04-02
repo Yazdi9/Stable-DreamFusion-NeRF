@@ -73,12 +73,6 @@ python main.py --text "a hamburger" --workspace trial -O --sd_version 1.5
 # we also support negative text prompt now:
 python main.py --text "a rose" --negative "red" --workspace trial -O
 
-## if the above command fails to generate meaningful things (learns an empty scene), maybe try:
-# 1. disable random lambertian/textureless shading, simply use albedo as color:
-python main.py --text "a hamburger" --workspace trial -O --albedo
-# 2. use a smaller density regularization weight:
-python main.py --text "a hamburger" --workspace trial -O --lambda_entropy 1e-5
-
 ## after the training is finished:
 # test (exporting 360 degree video)
 python main.py --workspace trial -O --test
@@ -87,11 +81,9 @@ python main.py --workspace trial -O --test --save_mesh
 # test with a GUI (free view control!)
 python main.py --workspace trial -O --test --gui
 
-
 ## train
 # `-O2` equals `--dir_text --backbone vanilla`
 python main.py --text "a hotdog" --workspace trial2 -O2
-
 
 ## test
 python main.py --workspace trial2 -O2 --test
