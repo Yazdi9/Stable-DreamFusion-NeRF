@@ -2,7 +2,16 @@
 
 A pytorch implementation of the text-to-3D model **Dreamfusion**, powered by the [Stable Diffusion](https://github.com/CompVis/stable-diffusion) text-to-2D model.
 
-https://user-images.githubusercontent.com/25863658/215996308-9fd959f5-b5c7-4a8e-a241-0fe63ec86a4a.mp4
+# Results 
+
+<div align=center>
+  
+<img  src="https://user-images.githubusercontent.com/33378412/229326006-de9d43ab-9e84-4976-9a7c-f05ebfab13e3.gif" width="400" height="420">
+<img  src="https://user-images.githubusercontent.com/33378412/229326120-50a2eaf6-722f-4b7a-889b-bdd330388721.gif" width="400" height="420"> 
+<img  src="https://user-images.githubusercontent.com/33378412/229326360-bf207b36-d8ff-449a-b07b-3e853ecfa659.gif" width="400" height="420">
+<img  src="https://user-images.githubusercontent.com/33378412/229326538-a532fea1-1e25-47c7-a794-9841b43a73c8.gif">
+
+ </div>
 
 # Colab notebooks:
 * [![Instant-NGP Backbone](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1MXT3yfOFvO0ooKEfiUUvTKwUkrrlCHpF?usp=sharing)
@@ -28,9 +37,8 @@ pip install git+https://github.com/openai/CLIP.git
 
 ```
 
-### Build extension (optional)
-By default, we use [`load`](https://pytorch.org/docs/stable/cpp_extension.html#torch.utils.cpp_extension.load) to build the extension at runtime.
-We also provide the `setup.py` to build each extension:
+### Build extension 
+
 ```bash
 # install all extension modules
 bash scripts/install_ext.sh
@@ -38,9 +46,8 @@ bash scripts/install_ext.sh
 # if you want to install manually, here is an example:
 pip install ./raymarching # install to python path (you still need the raymarching/ folder, since this only installs the built extension.)
 ```
-NOTE: if you use `setup.py` to install the extensions, do not forget to rerun installation after updating the source code! (in cases like `TypeError: grid_encode_forward(): incompatible function arguments`)
 
-### Taichi backend (optional)
+### Taichi backend 
 Use [Taichi](https://github.com/taichi-dev/taichi) backend for Instant-NGP. It achieves comparable performance to CUDA implementation while **No CUDA** build is required. Install Taichi with pip:
 ```bash
 pip install -i https://pypi.taichi.graphics/simple/ taichi-nightly
@@ -49,16 +56,8 @@ pip install -i https://pypi.taichi.graphics/simple/ taichi-nightly
 ```bash
 #### stable-dreamfusion setting
 
-### Instant-NGP NeRF Backbone
-# + faster rendering speed
-# + less GPU memory (~16G)
-# - need to build CUDA extensions (a CUDA-free Taichi backend is available)
-# - worse surface quality
-
 ## train with text prompt (with the default settings)
-# `-O` equals `--cuda_ray --fp16 --dir_text`
-# `--cuda_ray` enables instant-ngp-like occupancy grid based acceleration.
-# `--dir_text` enables view-dependent prompting.
+
 python main.py --text "a hamburger" --workspace trial -O
 
 # reduce stable-diffusion memory usage with `--vram_O` 
@@ -96,11 +95,6 @@ python main.py --workspace trial -O --test --save_mesh
 # test with a GUI (free view control!)
 python main.py --workspace trial -O --test --gui
 
-### Vanilla NeRF backbone
-# + better surface quality
-# + pure pytorch, no need to build extensions!
-# - slow rendering speed
-# - more GPU memory
 
 ## train
 # `-O2` equals `--dir_text --backbone vanilla`
