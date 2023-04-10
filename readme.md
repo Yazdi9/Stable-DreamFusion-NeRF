@@ -21,7 +21,7 @@ A pytorch implementation of the text-to-3D model **Dreamfusion**, powered by the
 # Install
 
 ```bash
-git clone https://github.com/ashawkey/stable-dreamfusion.git
+git clone https://github.com/saba99/Stable-DreamFusion-NeRF.git
 cd stable-dreamfusion
 ```
 
